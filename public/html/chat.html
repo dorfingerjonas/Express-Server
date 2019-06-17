@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+    <body>
+    <header>
+        <h1>My Server</h1>
+    </header>
+    <nav>
+        <a href="./">Home</a>
+        <a href="./status.html">Status</a>
+        <a href="./contact.html">Contact</a>
+        <a id="active" href="./chat">Chat</a>
+    </nav>
+    <main>
+        <h2>Chatroom</h2>
+        <form action="/chat" method="POST">
+            <h3>Post a message</h3>
+            <input type="text" placeholder="Name" name="name">
+            <br><br><br><br><br>
+            <textarea rows="1" placeholder="Message" name="message"></textarea>
+            <input type="submit" value="Send" tabindex="3">
+        </form>
+
+        <div id="chat">
+            <!--placeholder-->
+        </div>
+    </main>
+</body>
+</html>
