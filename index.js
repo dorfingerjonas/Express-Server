@@ -35,9 +35,9 @@ app.get('/chat', (req, res) => {
 
     for (const line of chat.split('\n')) {
         if (line) {
-            line = line.split(';');
+            const linePart = line.split(';');
 
-            chatHtml += `<div><h3>${line[0]}</h3><p>${line[1]}</p></div>`;
+            chatHtml += `<div><h3>${linePart[0]}</h3><p>${linePart[1]}</p></div>`;
         }
     }
 
@@ -45,7 +45,7 @@ app.get('/chat', (req, res) => {
 });
 
 app.get('/chat/:id', (req, res) => {
-    const data = fs.readFile('public/data/chat.csv', 'utf8', (err, data) => {
+    fs.readFile('public/data/chat.csv', 'utf8', (err, data) => {
        if (err) {
            res.status(404).send('Sorry no messages stored.');
        } else {
