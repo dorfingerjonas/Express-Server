@@ -10,7 +10,7 @@ app.listen(3000, () => {
 
 app.use(express.static('public/css'));
 app.use(express.static('public/html'));
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/chat', (req, res) => {
     if (req.body.name && req.body.message) {
@@ -46,25 +46,25 @@ app.get('/chat', (req, res) => {
 
 app.get('/chat/:id', (req, res) => {
     fs.readFile('public/data/chat.csv', 'utf8', (err, data) => {
-       if (err) {
-           res.status(404).send('Sorry no messages stored.');
-       } else {
-           const lines = data.split('\n');
+        if (err) {
+            res.status(404).send('Sorry no messages stored.');
+        } else {
+            const lines = data.split('\n');
 
-           if (req.params.id > 0 && req.params.id <= lines.length) {
-               const line = lines[req.params.id-1];
-               const elements = line.split(';');
+            if (req.params.id > 0 && req.params.id <= lines.length) {
+                const line = lines[req.params.id - 1];
+                const elements = line.split(';');
 
-               if (elements[1] !== undefined) {
-                   const obj = {name: elements[0], age: elements[1]};
-                   res.send(JSON.stringify(obj));
-               } else {
-                   const obj = {error: 'empty message' };
-                   res.send(JSON.stringify(obj));
-               }
-           } else {
-               res.send('error');
-           }
-       }
+                if (elements[1] !== undefined) {
+                    const obj = {name: elements[0], age: elements[1]};
+                    res.send(JSON.stringify(obj));
+                } else {
+                    const obj = {error: 'empty message'};
+                    res.send(JSON.stringify(obj));
+                }
+            } else {
+                res.send('error');
+            }
+        }
     });
 });
